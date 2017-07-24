@@ -18,7 +18,7 @@ module.exports = {
     chunkFilename: '[id].chunk.js'
   },
 
-  context: path.resolve(__dirname, "src"),
+  context: path.resolve(__dirname, 'src'),
 
   // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
