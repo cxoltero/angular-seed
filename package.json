@@ -1,8 +1,17 @@
 {
   "name": "angular-seed",
+  "version": "0.1.0",
+  "description": "This is the seed repo for FrontEnd project for Kenzan.com - Linux.com learning series.",
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kenzanlabs/angular-seed.git"
+  },
+  "keywords": [
+    "kenzanlabs"
+  ],
   "scripts": {
     "build": "npm run clean && npm run lint && webpack --config ./webpack.config.prod.js -p",
     "clean": "rimraf ./build && rimraf ./reports && mkdir ./reports && mkdir ./reports/test-results",
