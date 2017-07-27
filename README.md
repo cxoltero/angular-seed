@@ -48,11 +48,23 @@ angular-seed
 │
 └───src
 │   │
+│   └───components
+│   │     └───component1
+│   │           │   file111.component.ts
+│   │           │   file111.component.spec.ts
+│   │           │   file111.component.scss
+│   │           │   file111.html
 │   │
-│   └───subfolder1
-│       │   file111.ts
-│       │   file111.spec.ts
-│       │   ...
+│   │
+│   └───services
+│   │    │   service1.ts
+│   │    │   service1.spec.ts
+│   │
+│   └───views
+│        └───view1
+│             │   view1.html
+│             │   view1.ts
+│             │   view1.scss
 │
 └───folder2
     │   file021.ts

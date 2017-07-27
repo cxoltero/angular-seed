@@ -1,44 +1,43 @@
 {
-  "name": "angular-seed",
-  "version": "0.1.0",
-  "description": "This is the seed repo for FrontEnd project for Kenzan.com - Linux.com learning series.",
-  "version": "1.0.0",
-  "main": "src/index.js",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:kenzanlabs/angular-seed.git"
-  },
-  "keywords": [
-    "kenzanlabs"
-  ],
-  "scripts": {
-    "build": "npm run clean && npm run lint && webpack --config ./webpack.config.prod.js -p",
-    "clean": "rimraf ./build && rimraf ./reports && mkdir ./reports && mkdir ./reports/test-results",
-    "develop": "webpack-dev-server --open --config ./webpack.config.develop.js",
-    "lint": "npm run lintJS && tslint -c tslint.json './src/**/*.ts' -t 'stylish'",
-    "lintJS": "eslint *.js",
-    "serve": "npm run build && http-server ./build -o -p 9000"
-  },
-  "devDependencies": {
-    "awesome-typescript-loader": "^3.2.1",
-    "babel-loader": "^7.1.1",
-    "chalk": "^2.0.1",
-    "eslint": "^4.3.0",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "html-loader": "^0.4.5",
-    "html-webpack-plugin": "^2.29.0",
-    "http-server": "^0.10.0",
-    "progress-bar-webpack-plugin": "^1.10.0",
-    "rimraf": "^2.6.1",
-    "sass-loader": "^6.0.6",
-    "source-map-loader": "^0.2.1",
-    "tslint": "^5.5.0",
-    "tslint-loader": "^3.5.3",
-    "typescript": "^2.4.2",
-    "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.6.1",
-    "webpack-md5-hash": "^0.0.5",
-    "webpack-merge": "^4.1.0"
-  }
+    "name": "angular-seed",
+    "version": "0.1.0",
+    "description": "This is the seed repo for FrontEnd project for Kenzan.com - Linux.com learning series.",
+    "main": "src/index.js",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:kenzanlabs/angular-webpack-stack.git"
+    },
+    "keywords": [
+        "kenzanlabs"
+    ],
+    "scripts": {
+        "build": "npm run clean && npm run lint && webpack --config ./webpack.config.prod.js -p",
+        "clean": "rimraf ./build && rimraf ./reports && mkdir ./reports && mkdir ./reports/test-results",
+        "develop": "webpack-dev-server --open --config ./webpack.config.develop.js",
+        "lint": "npm run lintJS && tslint -c tslint.json './src/**/*.ts' -t 'stylish'",
+        "lintJS": "eslint *.js",
+        "serve": "npm run build && http-server ./build -o -p 9000"
+    },
+    "devDependencies": {
+        "awesome-typescript-loader": "^3.2.1",
+        "babel-loader": "^7.1.1",
+        "chalk": "^2.0.1",
+        "eslint": "^4.3.0",
+        "extract-text-webpack-plugin": "^3.0.0",
+        "html-loader": "^0.4.5",
+        "html-webpack-plugin": "^2.29.0",
+        "http-server": "^0.10.0",
+        "progress-bar-webpack-plugin": "^1.10.0",
+        "rimraf": "^2.6.1",
+        "sass-loader": "^6.0.6",
+        "source-map-loader": "^0.2.1",
+        "tslint": "^5.5.0",
+        "tslint-loader": "^3.5.3",
+        "typescript": "^2.4.2",
+        "webpack": "^3.3.0",
+        "webpack-dev-server": "^2.6.1",
+        "webpack-md5-hash": "^0.0.5",
+        "webpack-merge": "^4.1.0"
+    }
 }
