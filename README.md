@@ -44,7 +44,7 @@ Also know as 'dot' files, these are the build and build configuration files for 
  kept as flat as possible with a B.O.F. (birds of a feather) organization.
 
 ```
-angular-seed
+angular-webpack-stack
 │
 └───src
 │   │
