@@ -1,8 +1,16 @@
-function init() {
-    const app: HTMLElement = document.getElementById('app');
-    const title: string = 'Typescript - Webpack Stack started...!';
+import { NgModule } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { BrowserModule } from '@angular/platform-browser';
 
-    app.innerHTML = '<h1>' + title + '</h1>';
-}
+import {BootstrapComponent} from './components/bootstrap/bootstrap.component';
 
-window.onload = init;
+@NgModule({
+  imports:      [ BrowserModule ],
+  declarations: [ BootstrapComponent ],
+  exports:      [ BootstrapComponent ],
+  bootstrap:    [ BootstrapComponent ]
+})
+
+class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

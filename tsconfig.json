@@ -6,7 +6,12 @@
     "module": "commonjs",
     "target": "es2015",
     "allowJs": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "suppressImplicitAnyIndexErrors": true
   },
   "include": [
     "./src/**/*"
