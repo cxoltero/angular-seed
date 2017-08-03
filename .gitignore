@@ -28,3 +28,6 @@ build
 # reports
 reports
 test-report.xml
+
+# test coverage files
+coverage

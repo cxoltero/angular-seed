@@ -4,12 +4,12 @@ const shouldSingleRun = isProductionBuild;
 const browser = isProductionBuild ? 'PhantomJS' : 'Chrome';
 const webpackConfig = require('./webpack.config.common');
 
-module.exports = function(config) {
+module.exports = (config) => {
   const logLevel = isProductionBuild ? config.LOG_DEBUG : config.LOG_INFO;
 
   config.set({
     basePath: './',
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'es6-shim'],
     files: [
       'tests/common.js',
       'src/**/**/*.spec.js'
