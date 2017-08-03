@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@types/core-js": "^0.9.42",
+    "@types/es6-shim": "^0.31.34",
     "@types/jasmine": "^2.5.53",
     "@types/node": "^8.0.19",
     "angular2-template-loader": "^0.6.2",

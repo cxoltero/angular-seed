@@ -7,7 +7,6 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    polyfills: './polyfills.ts',
     index: './index.ts',
     vendor: './vendor.ts'
   },
@@ -65,7 +64,12 @@ module.exports = {
     }),
 
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common'
+      name: 'tests/common.js',
+      minChunks: ({ resource }) => {
+        return resource &&
+          resource.indexOf('node_modules') >= 0 &&
+          resource.match(/\.js$/);
+      }
     }),
 
     new ProgressBarPlugin({
@@ -81,6 +85,10 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)@angular/,
       path.resolve(__dirname, 'src')
-    )
+    ),
+
+    new webpack.ProvidePlugin({
+      Reflect: 'core-js/es7/reflect'
+    })
   ]
 };
