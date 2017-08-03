@@ -17,8 +17,7 @@
     "develop": "webpack-dev-server --open --config ./webpack.config.develop.js",
     "lint": "eslint *.js",
     "serve": "npm run build && http-server ./build -o -p 9000",
-    "test": "rimraf ./reports && karma start ./karma.config.js",
-    "tdd": "npm run test -- --watch"
+    "test": "rimraf ./reports && karma start ./karma.config.js"
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.53",
