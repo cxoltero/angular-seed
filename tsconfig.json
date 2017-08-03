@@ -1,23 +1,32 @@
 {
   "compilerOptions": {
-    "outDir": "./build/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es2015",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "removeComments": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "module": "commonjs",
     "moduleResolution": "node",
-    "suppressImplicitAnyIndexErrors": true
+    "noImplicitAny": true,
+    "outDir": "./build/",
+    "removeComments": false,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5",
+    "types": [
+      "core-js",
+      "jasmine",
+      "node"
+    ],
+    "lib": [
+      "es2016",
+      "dom"
+    ]
   },
-  "include": [
-    "./src/**/*"
-  ],
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
   "exclude": [
-    "./node_modules",
-    "./**/*.spec.ts"
+    "node_modules"
   ]
 }
