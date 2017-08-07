@@ -14,7 +14,7 @@ webpackConfig.plugins.push(
         resource.match(/\.js$/);
     }
   })
-)
+);
 
 module.exports = (config) => {
   const logLevel = isProductionBuild ? config.LOG_DEBUG : config.LOG_INFO;
