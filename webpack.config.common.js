@@ -7,8 +7,9 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    index: './index.ts',
-    vendor: './vendor.ts'
+    polyfills: './polyfills.ts',
+    vendor: './vendor.ts',
+    index: './index.ts'
   },
 
   output: {
@@ -61,15 +62,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'index.html',
       chunksSortMode: 'dependency'
-    }),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'tests/common.js',
-      minChunks: ({ resource }) => {
-        return resource &&
-          resource.indexOf('node_modules') >= 0 &&
-          resource.match(/\.js$/);
-      }
     }),
 
     new ProgressBarPlugin({

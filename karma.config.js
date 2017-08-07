@@ -3,6 +3,18 @@ const shouldWatch = !isProductionBuild;
 const shouldSingleRun = isProductionBuild;
 const browser = isProductionBuild ? 'PhantomJS' : 'Chrome';
 const webpackConfig = require('./webpack.config.common');
+const webpack = require('webpack');
+
+webpackConfig.plugins.push(
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'tests/common.js',
+    minChunks: ({ resource }) => {
+      return resource &&
+        resource.indexOf('node_modules') >= 0 &&
+        resource.match(/\.js$/);
+    }
+  })
+)
 
 module.exports = (config) => {
   const logLevel = isProductionBuild ? config.LOG_DEBUG : config.LOG_INFO;
