@@ -5,16 +5,14 @@ const browser = isProductionBuild ? 'PhantomJS' : 'Chrome';
 const webpackConfig = require('./webpack.config.common');
 const webpack = require('webpack');
 
-webpackConfig.plugins.push(
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'tests/common.js',
-    minChunks: ({ resource }) => {
-      return resource &&
-        resource.indexOf('node_modules') >= 0 &&
-        resource.match(/\.js$/);
-    }
-  })
-);
+webpackConfig.plugins[2] = new webpack.optimize.CommonsChunkPlugin({
+  name: 'tests/common.js',
+  minChunks: ({ resource }) => {
+    return resource &&
+      resource.indexOf('node_modules') >= 0 &&
+      resource.match(/\.js$/);
+  }
+});
 
 module.exports = (config) => {
   const logLevel = isProductionBuild ? config.LOG_DEBUG : config.LOG_INFO;
@@ -23,12 +21,12 @@ module.exports = (config) => {
     basePath: './',
     frameworks: ['jasmine', 'es6-shim'],
     files: [
-      'tests/common.js',
+      // 'tests/common.js',
       'src/**/**/*.spec.js'
     ],
 
     preprocessors: {
-      'tests/common.js': ['webpack', 'coverage'],
+      // 'tests/common.js': ['webpack', 'coverage'],
       'src/**/*.js': ['webpack', 'babel', 'coverage'],
       'src/**/*.ts': ['webpack', 'coverage']
     },

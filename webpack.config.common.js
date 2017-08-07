@@ -16,7 +16,7 @@ module.exports = {
     path: path.join(__dirname, './build'),
     filename: '[name].bundle.js',
     sourceMapFilename: '[name].map',
-    chunkFilename: '[id].[name]chunk.js'
+    chunkFilename: 'chunk.[hash].bundle.js'
   },
 
   context: path.resolve(__dirname, 'src'),
@@ -60,8 +60,17 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
 
     new HtmlWebpackPlugin({
-      template: 'index.html',
-      chunksSortMode: 'dependency'
+      template: 'index.html'
+      // chunksSortMode: function (chunk1, chunk2) {
+      //   const order = ['polyfills', 'vendor', 'index'];
+      //   const first = order.indexOf(chunk1.names[0]);
+      //   const second = order.indexOf(chunk2.names[0]);
+      //   return first - second;
+      // }
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common'
     }),
 
     new ProgressBarPlugin({
