@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import ContactService, { ContactInterface } from '../../services/contacts.service';
+import { AppStore } from '../../app-store';
+
+interface LocalStateInterface {
+  contacts: ContactInterface[];
+  currentIndex: number;
+
+}
 
 @Component({
   selector: 'home',
@@ -14,16 +21,23 @@ export class HomeViewComponent {
   public contacts: ContactInterface[];
   public activeContact: ContactInterface;
   public buildName: Function;
+  private localState: LocalStateInterface;
 
-  constructor(private _contactService: ContactService) {
+  constructor(private _contactService: ContactService, private appStore: AppStore) {
     this.isFormOpen = false;
-    this.contacts = [];
-    this.activeContactId = null;
     this.buildName = this._contactService.buildName;
+
+    this.localState = {
+      contacts: [],
+      currentIndex: null
+    };
   }
 
   ngOnInit() {
-    this.activeContact = this.contacts.length > 0 ? this.contacts[this.activeContactId] : null;
+    const { contacts, currentIndex } = this.localState;
+
+    this.localState = this.appStore.getState();
+    this.activeContact = contacts.length > 0 ? contacts[currentIndex] : null;
   }
 
   public openForm() {
@@ -38,14 +52,23 @@ export class HomeViewComponent {
 
   public addNewContact(contact: ContactInterface) {
     if (contact.firstName) {
-      this.contacts.push(contact);
+      this.addContact(contact);
       this.activeContact = contact;
-      this.activeContactId = this.contacts.length - 1;
+      this.activeContactId = this.localState.contacts.length - 1;
       this.isFormOpen = false;
     }
   }
 
   public setActive(id: number) {
-    this.activeContact = this.contacts[id];
+    this.activeContact = this.localState.contacts[id];
+  }
+
+  public getContacts() {
+    return this.localState.contacts;
+  }
+
+  private addContact(contact: ContactInterface) {
+    this.localState.contacts.push(contact);
+    this.appStore.setState(this.localState);
   }
 }

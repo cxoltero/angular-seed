@@ -1,3 +1,4 @@
+import { removeNgStyles, createNewHosts, createInputTransfer, bootloader } from '@angularclass/hmr';
 // TODO, as of now I had to import polyfills due to error:
 // Uncaught reflect-metadata shim is required when using class decorators
 // Current fix refference:
@@ -5,7 +6,7 @@
 
 import './polyfills';
 
-import { NgModule, enableProdMode } from '@angular/core';
+import { NgModule, ApplicationRef, enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -27,6 +28,8 @@ import { ContactsListComponent } from './components/contacts-list/contacts-list'
 // views
 import { HomeViewComponent } from './views/home/home';
 import { AboutViewComponent } from './views/about/about';
+
+import { AppStore } from './app-store';
 
 if (process.env.ENV === 'production') {
   enableProdMode();
@@ -53,10 +56,55 @@ if (process.env.ENV === 'production') {
   bootstrap:    [ BootstrapComponent ],
   providers: [
     ContactService,
-    GravatarService
+    GravatarService,
+    AppStore
   ]
 })
 
-class AppModule { }
+class AppModule {
+  constructor(public appRef: ApplicationRef, public appStore: AppStore) {
+    console.log(this.appRef, 'app ref');
+    console.log(this.appStore, 'app appStore');
+  }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+  /* tslint:disable no-any */
+  hmrOnInit(store: any) {
+    console.log('inside first');
+    if (!store || !store.state) { return; }
+    console.log('HMR store', JSON.stringify(store, null, 2));
+    // restore state
+    this.appStore.setState(store.state);
+    // restore input values
+    if ('restoreInputValues' in store) { store.restoreInputValues(); }
+    this.appRef.tick();
+    Object.keys(store).forEach(prop => delete store[prop]);
+  }
+
+  /* tslint:disable no-any */
+  hmrOnDestroy(store: any) {
+    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    const currentState = this.appStore.getState();
+    store.state = currentState;
+    // recreate elements
+    store.disposeOldHosts = createNewHosts(cmpLocation);
+    // save input values
+    store.restoreInputValues  = createInputTransfer();
+    // remove styles
+    removeNgStyles();
+  }
+
+  /* tslint:disable no-any */
+  hmrAfterDestroy(store: any) {
+    console.log('inside first');
+    // display new elements
+    store.disposeOldHosts();
+    delete store.disposeOldHosts;
+  }
+}
+
+export function main() {
+  return platformBrowserDynamic().bootstrapModule(AppModule);
+}
+
+// boot on document ready
+bootloader(main);

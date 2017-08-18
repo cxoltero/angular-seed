@@ -19,3 +19,4 @@ export default class ContactService {
     return `${contact.firstName}${middleName}${lastName}`;
   }
 }
+

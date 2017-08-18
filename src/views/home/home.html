@@ -7,7 +7,7 @@
     </div>
     <div class='row'>
       <div class='col-12 col-md-6 col-lg-4 text-center'>
-        <contacts-list [contacts]='contacts' [activeIndex]='activeContactId' (setActiveContact)='setActive($event)'></contacts-list>
+        <contacts-list [contacts]='getContacts()' [activeIndex]='activeContactId' (setActiveContact)='setActive($event)'></contacts-list>
       </div>
       <div class='hidden-sm-down col' *ngIf='(!!activeContact)'>
         <div class='card'>
